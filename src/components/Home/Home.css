@@ -1,0 +1,30 @@
+.homePage {
+    background-color: var(--bgcolor);
+    border: groove 1em var(--titlecolor);  
+    border-radius: 2rem;
+    width: 96vw;
+}
+
+h2, h3 {
+    color: var(--titlecolor);
+    font-family: var(--secondaryfont);
+    font-size: 3rem;
+    text-align: center;
+}
+
+img {
+    width: 15vw;
+    margin: 1rem 40rem;
+}
+
+p, li {
+    font-family: var(--principalfont);
+    color: var(--principalcolor);
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: justify;
+    margin: .5rem 3rem; 
+}
+li {
+    list-style: none;
+}

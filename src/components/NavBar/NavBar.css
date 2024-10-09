@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    width: 97vw;
+    height: 18vh;
+    background-color: var(--titlecolor);
+    border: groove 1em var(--bgcolor);  
+    border-radius: 2rem;
+}
+
+h1 {
+    padding-top: 1.5rem;
+    color: var(--bgcolor);
+}
+
+.links {
+    font-family: var(--principalfont);
+    font-size: 2rem;
+    padding-top: 1.5rem;
+}
+
+button {
+    margin: 0 1rem;
+    background-color: var(--titlecolor);
+    color: var(--bgcolor);
+}

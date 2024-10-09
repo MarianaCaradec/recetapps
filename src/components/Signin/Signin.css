@@ -1,0 +1,68 @@
+.formContainer {
+    background-color: var(--bgcolor);
+    /* width: 98vw;
+    height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 85vw;
+    margin: 2rem 2rem;
+}
+
+label {
+    font-size: 1.5rem;
+    font-family: var(--secondaryfont);
+    color: var(--titlecolor);
+    font-weight: bold;
+}
+
+input {
+    font-size: 1rem;
+    font-family: var(--secondaryfont);
+    background-color: var(--bgcolor);
+    color: var(--principalcolor);
+    height: 2.5rem;
+    border-style: dashed;
+    border-color: var(--errormessage);
+}
+input:focus {
+    background-color: var(--detailscolor);
+    color: var(--bgcolor);
+}
+
+.sendingStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 1.5rem;
+}
+
+.sendButton {
+    font-size: 2rem;
+    font-family: var(--secondaryfont);
+    background-color: var(--detailscolor);
+    color: var(--titlecolor);
+}
+.sendButton:disabled {
+    background-color: var(--disabled);
+}
+
+.message {
+    font-family: var(--secondaryfont);
+    font-size: 1rem;
+    text-align: center;
+}
+.error {
+    color: var(--errormessage);
+}
+.success {
+    color: var(--successmessage);
+}

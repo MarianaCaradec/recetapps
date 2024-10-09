@@ -1,0 +1,47 @@
+.recipesContainer {
+    background-color: var(--bgcolor);
+    border: groove 1em var(--titlecolor);  
+    border-radius: 2rem;
+    width: 96vw;
+}
+
+.recipeCard {
+    border: solid 1rem var(--titlecolor);  
+    border-radius: 2rem;
+}
+
+h4 {
+    color: var(--titlecolor);
+    font-family: var(--secondaryfont);
+    font-size: 1.5rem;
+    text-align: start;
+    margin-left: 1.5rem;
+}
+
+img {
+    width: 25vw;
+    margin: 1rem 33rem; 
+    border-radius: 2rem;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .6rem;
+}
+
+p {
+    margin: 0 3rem; 
+}
+
+li {
+    color: var(--detailscolor);
+}
+
+.show {
+    display: contents;
+}
+.hide {
+    display: none;
+}
