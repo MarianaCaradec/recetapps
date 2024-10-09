@@ -2,10 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import './App.css'
 
-import NavBar from './components/NavBar/NavBar'
-import Home from './components/Home/Home'
-import Signin from './components/Signin/Signin'
-import Inicio from './components/Inicio/Inicio'
+import NavBar from './pages/NavBar/NavBar'
+import Home from './pages/Home/Home'
+import Signin from './pages/Signin/Signin'
+import Inicio from './pages/Inicio/Inicio'
 
 function App() {
 

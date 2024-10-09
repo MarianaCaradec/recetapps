@@ -7,6 +7,8 @@ import { db, storage } from "../../services/firebaseConfig"
 
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 
+import AddButton from "../../components/Buttons/AddButton"
+
 interface Recipe {
     id: string
     title: string
@@ -185,6 +187,7 @@ const Inicio = () => {
                     </ul>
                     <h4>Tiempo de preparación: {newRecipe.timeOfPreparation}</h4>
                     <h4>{`Rinde ${newRecipe.servings} porciones`}</h4>
+                    <AddButton/>
                 </div>
             )}
         </div>
