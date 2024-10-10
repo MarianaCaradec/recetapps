@@ -1,6 +1,5 @@
 import { useEffect} from "react"
 
-import AddButton from "../Buttons/AddButton"
 import { useNewRecipesContext } from "../../context/newRecipesContext"
 
 const AddNewRecipe = () => {
@@ -81,7 +80,6 @@ const AddNewRecipe = () => {
                     </ul>
                     <h4>Tiempo de preparación: {newRecipe.timeOfPreparation}</h4>
                     <h4>{`Rinde ${newRecipe.servings} porciones`}</h4>
-                    <AddButton/>
                 </div>
             )}
         </>
