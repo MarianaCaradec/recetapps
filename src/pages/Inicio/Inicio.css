@@ -45,3 +45,18 @@ li {
 .hide {
     display: none;
 }
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--principalcolor);
+    font-family: var(--secondaryfont);
+}
+
+.userPhoto {
+    width: 4rem;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
