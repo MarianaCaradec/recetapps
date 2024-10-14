@@ -12,20 +12,11 @@
 
 h1 {
     padding-top: 1.5rem;
-    color: var(--principalcolor);
+    color: var(--detailscolor);
 }
 
 .links {
     font-family: var(--principalfont);
     font-size: 2rem;
     padding-top: 1.5rem;
-}
-
-button {
-    margin: 0 1rem;
-    background-color: var(--detailscolor);
-    color: var(--principalcolor);
-}
-button:hover, button:focus {
-    border-color: var(--detailscolor);
 }
