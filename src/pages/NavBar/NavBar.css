@@ -12,7 +12,7 @@
 
 h1 {
     padding-top: 1.5rem;
-    color: var(--bgcolor);
+    color: var(--principalcolor);
 }
 
 .links {
@@ -23,6 +23,9 @@ h1 {
 
 button {
     margin: 0 1rem;
-    background-color: var(--titlecolor);
-    color: var(--bgcolor);
+    background-color: var(--detailscolor);
+    color: var(--principalcolor);
+}
+button:hover, button:focus {
+    border-color: var(--detailscolor);
 }

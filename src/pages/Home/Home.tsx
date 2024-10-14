@@ -8,11 +8,12 @@ const Home  = () => {
             <div>
                 <h2>¡Bienvenidx a Recetapps, tu nueva compañera en la cocina!</h2>
             </div>
-            <div>
-                <img src={homepic} alt="home pic" />
-                <p> Descubre un mundo de sabores con nuestra aplicación de recetas fácil de usar, diseñada para ayudarte a preparar deliciosos platos en casa. Ya seas un chef experimentado o estés dando tus primeros pasos en la cocina, Recetapps te ofrece una variedad de recetas para cada ocasión, desde comidas rápidas hasta cenas gourmet. </p>
+            <div className='welcome'>
+                <img className='homePic' src={homepic} alt="home pic" />
+                
             </div>
             <div>
+            <p> Descubre un mundo de sabores con nuestra aplicación de recetas fácil de usar, diseñada para ayudarte a preparar deliciosos platos en casa. Ya seas un chef experimentado o estés dando tus primeros pasos en la cocina, Recetapps te ofrece una variedad de recetas para cada ocasión, desde comidas rápidas hasta cenas gourmet. </p>
                 <h3>Nuestra plataforma te permite:</h3>
                 <ul> 
                     <li>Explorar recetas por categorías e ingredientes.</li>

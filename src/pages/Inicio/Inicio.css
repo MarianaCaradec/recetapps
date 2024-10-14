@@ -1,8 +1,18 @@
+.recipesContainer, .recipeCard {
+    background-image: url(assets/bgimage.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .recipesContainer {
-    background-color: var(--bgcolor);
     border: groove 1em var(--titlecolor);  
     border-radius: 2rem;
-    width: 96vw;
+    width: 94vw;
 }
 
 .recipeCard {
@@ -11,32 +21,47 @@
 }
 
 h4 {
-    color: var(--titlecolor);
+    color: var(--detailscolor);
+    text-shadow: 
+    -1px -1px 0px rgb(168, 48, 24), 
+    1px -1px 0px rgb(168, 48, 24), 
+    -1px  1px 0px rgb(168, 48, 24),
+    1px  1px 0px rgb(168, 48, 24);
     font-family: var(--secondaryfont);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: start;
     margin-left: 1.5rem;
 }
 
 img {
     width: 25vw;
-    margin: 1rem 33rem; 
     border-radius: 2rem;
+    margin: 1.5rem 0;
 }
 
 .ingredients {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: .6rem;
 }
 
 p {
     margin: 0 3rem; 
+    text-shadow: 
+    -1px -1px 0px rgb(116, 55, 93), 
+    1px -1px 0px rgb(116, 55, 93), 
+    -1px  1px 0px rgb(116, 55, 93),
+    1px  1px 0px rgb(116, 55, 93);
 }
 
 li {
-    color: var(--detailscolor);
+    color: var(--principalcolor);
+    margin: 1rem 0;
+    text-shadow: 
+    -1px -1px 0px rgb(117, 31, 14), 
+    1px -1px 0px rgb(117, 31, 14), 
+    -1px  1px 0px rgb(117, 31, 14),
+    1px  1px 0px rgb(117, 31, 14);
 }
 
 .show {

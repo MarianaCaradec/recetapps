@@ -6,19 +6,26 @@
 }
 
 body {
+  background-image: url(assets/bgimage.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center center; 
   width: 100vw;
   height: auto;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #root {
   --principalfont: "PT Sans", sans-serif;
   --secondaryfont: "Kanit", sans-serif;
-  --bgcolor: #EFFFC8;
-  --titlecolor: #E55934;
-  --detailscolor: #85cb33;
-  --disabled: #72ac30;
-  --principalcolor: #6A4D51;
+  --titlecolor: rgb(169, 41, 15);
+  --principalcolor: rgb(140, 91, 83);
+  --detailscolor: rgb(53, 24, 42);
+  --disabled: #A22522;
   --errormessage: #A22522;
   --successmessage: #A8C256 ;
 }

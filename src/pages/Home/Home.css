@@ -1,25 +1,46 @@
 .homePage {
-    background-color: var(--bgcolor);
-    border: groove 1em var(--titlecolor);  
+    border: groove 1em var(--titlecolor);
     border-radius: 2rem;
-    width: 96vw;
+    width: 94vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h2, h3 {
     color: var(--titlecolor);
+    text-shadow: 
+    -1px -1px 0px rgb(117, 31, 14), 
+    1px -1px 0px rgb(117, 31, 14), 
+    -1px  1px 0px rgb(117, 31, 14),
+    1px  1px 0px rgb(117, 31, 14);
     font-family: var(--secondaryfont);
     font-size: 3rem;
     text-align: center;
 }
 
-img {
-    width: 15vw;
-    margin: 1rem 40rem;
+.welcome {
+    margin: 1rem 43rem;
+}
+
+.homePic {
+    width: 20vw;
+
+}
+
+ul {
+    margin: 0 3rem;
 }
 
 p, li {
     font-family: var(--principalfont);
     color: var(--principalcolor);
+    text-shadow: 
+    -1px -1px 0px rgb(116, 55, 93), 
+    1px -1px 0px rgb(116, 55, 93), 
+    -1px  1px 0px rgb(116, 55, 93),
+    1px  1px 0px rgb(116, 55, 93);
     font-size: 1.7rem;
     font-weight: bold;
     text-align: justify;
