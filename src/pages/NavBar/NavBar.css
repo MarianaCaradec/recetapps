@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 2rem;
+    align-items: center;
+    gap: 5rem;
     width: 97vw;
     height: 18vh;
     background-color: var(--titlecolor);
@@ -11,12 +12,33 @@
 }
 
 h1 {
-    padding-top: 1.5rem;
     color: var(--detailscolor);
+    text-shadow: 
+    -1px -1px 0px #d09d9c, 
+    1px -1px 0px #d09d9c, 
+    -1px  1px 0px #d09d9c,
+    1px  1px 0px #d09d9c;
 }
 
 .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     font-family: var(--principalfont);
     font-size: 2rem;
-    padding-top: 1.5rem;
+    width: 50%;
+}
+
+button {
+    font-family: var(--secondaryfont);
+    text-transform: none;
+    font-size: 1.8rem;
+    width: 25vw;
+    height: auto;
+    margin: 0 1rem;
+}
+button:focus {
+    outline: none;
 }

@@ -1,3 +1,7 @@
+body {
+    overflow-y: hidden;
+}
+
 .formContainer {
     background-image: url(assets/bgimage.jpg);
     background-size: cover;
@@ -14,6 +18,7 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
     width: 85vw;
     margin: 2rem;
@@ -29,22 +34,24 @@ label {
 input {
     font-size: 1rem;
     font-family: var(--secondaryfont);
-    background-color: var(--bgcolor);
-    color: var(--principalcolor);
+    background-color: transparent;
+    color: var(--detailscolor);
     height: 2.5rem;
     border-style: dashed;
     border-color: var(--errormessage);
 }
 input:focus {
-    background-color: var(--detailscolor);
-    color: var(--bgcolor);
+    background-color: var(--principalcolor);
+    color: var(--titlecolor);
+    border-color: var(--titlecolor);
+    outline: none;
 }
 
 .sendingStatus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding-top: 1.5rem;
+    align-items: center;
 }
 
 .sendButton {

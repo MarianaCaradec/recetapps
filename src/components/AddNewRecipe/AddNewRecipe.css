@@ -1,0 +1,56 @@
+form {
+    width: 94vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+label {
+    font-family: var(--secondaryfont);
+    font-size: 1.8rem;
+}
+
+.imgDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+.imgDiv input {
+    color: var(--principalcolor);
+    text-shadow: none;
+    width: 50rem;
+    padding: .5rem;
+}
+
+input, textarea {
+    font-family: var(--principalfont);
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: var(--detailscolor);
+    text-shadow: 
+    -1px -1px 0px #d09d9c, 
+    1px -1px 0px #d09d9c, 
+    -1px  1px 0px #d09d9c,
+    1px  1px 0px #d09d9c;
+    border-style: double;
+    border-color: var(--titlecolor);
+    border-width: .5rem;
+    border-radius: 5%;
+}
+input:focus, textarea:focus {
+    background-color: var(--principalcolor);
+    color: var(--titlecolor);
+    border-color: var(--titlecolor);
+    outline: none;
+}
+
+label, input, textarea, button {
+    width: 90%;
+}

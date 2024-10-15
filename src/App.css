@@ -121,9 +121,9 @@ button:where(:hover, :focus) {
 #root {
   --principalfont: "PT Sans", sans-serif;
   --secondaryfont: "Kanit", sans-serif;
-  --titlecolor: rgb(169, 41, 15);
-  --principalcolor: rgb(140, 91, 83);
-  --detailscolor: rgb(53, 24, 42);
+  --titlecolor: #a9290f;
+  --principalcolor: #d09d9c;
+  --detailscolor: #7e2178;
   --disabled: #A22522;
   --errormessage: #A22522;
   --successmessage: #A8C256 ;

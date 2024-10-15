@@ -2,6 +2,8 @@ import { useEffect} from "react"
 
 import { useNewRecipesContext } from "../../context/newRecipesContext"
 
+import './AddNewRecipe.css'
+
 const AddNewRecipe = () => {
 
     const {
@@ -45,17 +47,17 @@ const AddNewRecipe = () => {
 
     return (
         <>
-            <div>
+            <div className="formContainer">
                 <h2>Agregar mi receta</h2>
                 <form onSubmit={addNewRecipe}>
                     <label>Nombre de la receta</label>
                     <input type="text" value={newRecipe.title} onChange={(e) => setNewRecipe({...newRecipe, title: e.target.value})}/>
-                    <div>
+                    <div className="imgDiv">
                         <label>Imagen del plato</label>
                         <input type="file" accept="image/" onChange={(e) => handleImage(e)}/>
                     </div>
                     <label>Descripción</label>
-                    <input type="text" value={newRecipe.description} onChange={(e) => setNewRecipe({...newRecipe, description: e.target.value})}/>
+                    <textarea value={newRecipe.description} onChange={(e) => setNewRecipe({...newRecipe, description: e.target.value})}/>
                     <label>Ingredientes</label>
                     <input type="text" value={newRecipe.ingredients} onChange={(e) => setNewRecipe({...newRecipe, ingredients: e.target.value})} placeholder="Escriba cada ingrediente separado por coma por favor"/>
                     <label>Tiempo de preparación</label>

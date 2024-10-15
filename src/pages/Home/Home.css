@@ -11,10 +11,10 @@
 h2, h3 {
     color: var(--titlecolor);
     text-shadow: 
-    -1px -1px 0px rgb(117, 31, 14), 
-    1px -1px 0px rgb(117, 31, 14), 
-    -1px  1px 0px rgb(117, 31, 14),
-    1px  1px 0px rgb(117, 31, 14);
+    -1px -1px 0px #d09d9c, 
+    1px -1px 0px #d09d9c, 
+    -1px  1px 0px #d09d9c,
+    1px  1px 0px #d09d9c;
     font-family: var(--secondaryfont);
     font-size: 3rem;
     text-align: center;
