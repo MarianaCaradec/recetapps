@@ -2,25 +2,36 @@ import { useEffect } from "react"
 
 import './Inicio.css'
 
+import { auth } from "../../services/firebaseConfig"
+
 import {useRecipesContext } from "../../context/recipesContext"
+import { useUserContext } from "../../context/userContext"
 
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe"
+import SaveRecipeButton from "../../components/SaveRecipeButton/SaveRecipeButton"
+import EditRecipeButton from "../../components/EditRecipeButton/EditRecipeButton"
+import ShareRecipeButton from "../../components/ShareRecipeButton/ShareRecipeButton"
+
 
 const Inicio = () => {
     const {fetchRecipes, recipes, setLoading} = useRecipesContext()
+    const {updateUser } = useUserContext()
 
     useEffect(() => {
         fetchRecipes()
+        updateUser()
         setLoading(false)
     }, [])
 
-    if(recipes.length < 0) {
+    if(recipes.length <= 0) {
         return (<h3>No es posible recuperar los datos</h3>)
     }
 
     return (
         <div className="recipesContainer">
             {recipes && recipes.map(recipe => {
+            const currentUser = auth.currentUser; 
+            const isOwner = currentUser?.uid === recipe.user?.userId;
                 return (
                     <div key={recipe.id} className="recipeCard">
                         {recipe.user && (
@@ -41,6 +52,10 @@ const Inicio = () => {
                         </ul>
                         <h4>Tiempo de preparación: {recipe.timeOfPreparation}</h4>
                         <h4>{`Rinde ${recipe.servings} porciones`}</h4>
+                        <div className="buttons">
+                            <button> <SaveRecipeButton/> </button>
+                            <button> {isOwner ? <EditRecipeButton/> : <ShareRecipeButton/>} </button>
+                        </div>
                     </div>
                 )
             })}

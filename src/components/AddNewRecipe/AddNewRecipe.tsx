@@ -3,20 +3,11 @@ import { useEffect} from "react"
 import { useNewRecipesContext } from "../../context/newRecipesContext"
 
 import './AddNewRecipe.css'
+import { useUserContext } from "../../context/userContext"
 
 const AddNewRecipe = () => {
-
-    const {
-        newRecipe, 
-        setNewRecipe, 
-        newRecipeIsVisible, 
-        setNewRecipeIsVisible, 
-        user, 
-        updateUser, 
-        setImage, 
-        imageUrl,
-        uploadingImage,
-        manageNewRecipeData} = useNewRecipesContext()
+    const {newRecipe, setNewRecipe, newRecipeIsVisible, setNewRecipeIsVisible, setImage, imageUrl,uploadingImage,manageNewRecipeData} = useNewRecipesContext()
+    const {user, updateUser} = useUserContext()
 
 
     useEffect(() => {

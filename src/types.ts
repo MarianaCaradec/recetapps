@@ -19,6 +19,7 @@ export interface Recipe {
     timeOfPreparation: string
     servings: number | string
     user: {
+        userId: string
         displayName: string | null
         photoURL: string | null
     }

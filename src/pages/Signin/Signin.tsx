@@ -1,86 +1,26 @@
-import { useState } from "react"
-
 import {Link} from 'react-router-dom'
 
 import './Signin.css'
 
-import { auth } from "../../services/firebaseConfig"
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
-
-import { Form, Messages } from "../../types.ts"
+import { Messages } from "../../types.ts"
+import { useUserContext } from "../../context/userContext.tsx"
 
 const Signin = () => {
-    const [inputValues, setInputValues] = useState<Form>({
-        mail: '',
-        password: ''
-    })
-    const [mailIsValid, setMailIsValid] = useState(false)
-    const [passwordIsValid, setPasswordIsValid] = useState(false)
-    const [status, setStatus] = useState<Messages>(Messages.waiting)
-
-    const registerUserMail = async (mail: string, password: string) => {
-        try {
-            const userCredential = await createUserWithEmailAndPassword(auth, mail, password)
-            await signInWithEmailAndPassword(auth, inputValues.mail, String(inputValues.password));
-            const user = userCredential.user
-            return user
-        }
-        catch {
-            return (<h3>{Messages.error}</h3>)
-        }
-    }
-
-    const registerUserGoogle = async () => {
-        try {
-            const provider = new GoogleAuthProvider()
-            await signInWithPopup(auth, provider)
-        }
-        catch {
-            return (<h3>{Messages.error}</h3>)
-        }
-    }
-
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target
-
-        setInputValues({
-            ...inputValues, 
-            [name]: value
-            })
-
-        const mailRegexp: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        const passwordRegexp: RegExp = /^(?=.*[A-Z])(?=.*\d).+$/     
-
-        if(name === 'mail'){
-            if(mailRegexp.test(value)) {
-                setMailIsValid(true)
-            } else {
-                setMailIsValid(false)
-            }
-        }
-        
-        if(name === 'password') {
-            if(passwordRegexp.test(value)) {
-                setPasswordIsValid(true)
-            } else {
-                setPasswordIsValid(false)
-            }
-        }
-
-        if(mailRegexp.test(inputValues.mail) && typeof inputValues.password === 'string' && passwordRegexp.test(inputValues.password)) {
-            setStatus(Messages.okay)
-        } else {
-            setStatus(Messages.error)
-        }
-    }
-
-    const formIsValid = mailIsValid && passwordIsValid
-
+    const {setInputValues, 
+        inputValues,
+        setMailIsValid,
+        setPasswordIsValid,
+        status,
+        setStatus,
+        formIsValid,
+        registerUserMail, 
+        registerUserGoogle,
+        handleChange} = useUserContext()
 
     const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if(!formIsValid || !registerUserGoogle) {
+        if(!formIsValid) {
             setStatus(Messages.error)
             return ;
         }

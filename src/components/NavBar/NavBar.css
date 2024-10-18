@@ -12,7 +12,7 @@
 }
 
 h1 {
-    color: var(--detailscolor);
+    color: var(--principalcolor);
     text-shadow: 
     -1px -1px 0px #d09d9c, 
     1px -1px 0px #d09d9c, 
@@ -20,7 +20,7 @@ h1 {
     1px  1px 0px #d09d9c;
 }
 
-.links {
+.links, h1 {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -31,7 +31,7 @@ h1 {
     width: 50%;
 }
 
-button {
+button, .miPerfil{
     font-family: var(--secondaryfont);
     text-transform: none;
     font-size: 1.8rem;
@@ -41,4 +41,8 @@ button {
 }
 button:focus {
     outline: none;
+}
+
+.sinPerfil {
+    display: none;
 }

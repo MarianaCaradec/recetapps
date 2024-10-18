@@ -2,8 +2,6 @@ import { createContext, Dispatch, SetStateAction, useContext, useState } from "r
 
 import { Recipe } from "../types"
 
-import { auth } from "../services/firebaseConfig"
-import { onAuthStateChanged, User } from "firebase/auth"
 import { addDoc, collection } from "firebase/firestore"
 import { db, storage } from "../services/firebaseConfig"
 
@@ -11,6 +9,7 @@ import { db, storage } from "../services/firebaseConfig"
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 
 import { useRecipesContext } from "./recipesContext"
+import { useUserContext } from "./userContext"
 
 interface NewRecipesContextType {
     newRecipe: Recipe
@@ -23,9 +22,6 @@ interface NewRecipesContextType {
     setImageUrl: Dispatch<SetStateAction<string>>
     uploadingImage: boolean
     setUploadingImage: Dispatch<SetStateAction<boolean>>
-    user: User | null
-    setUser: Dispatch<SetStateAction<User | null>>
-    updateUser: () => void
     manageNewRecipeData: () => void
 }
 
@@ -41,6 +37,7 @@ export const NewRecipesContextProvider = ({children}: any) => {
         timeOfPreparation: '',
         servings: 0,
         user: {
+            userId: '',
             displayName: '',
             photoURL: ''
         }
@@ -49,17 +46,9 @@ export const NewRecipesContextProvider = ({children}: any) => {
     const [image, setImage] = useState<File | null>(null)
     const [imageUrl, setImageUrl] = useState<string>('')
     const [uploadingImage, setUploadingImage] = useState<boolean>(false)
-    const [user, setUser] = useState<User | null>(null)
 
     const {recipes, setRecipes} = useRecipesContext()
-
-    const updateUser = () => {
-        onAuthStateChanged(auth, (currentUser) => {
-            if(currentUser) {
-                setUser(currentUser)
-            }
-        })
-    }
+    const {user} = useUserContext()
 
     const manageNewRecipeData = () => {
         if(!user) {
@@ -106,6 +95,7 @@ export const NewRecipesContextProvider = ({children}: any) => {
                             timeOfPreparation: newRecipe.timeOfPreparation,
                             servings: newRecipe.servings,
                             user: {
+                                userId: user.uid,
                                 displayName: user.displayName,
                                 photoURL: user.photoURL
                             }
@@ -123,6 +113,7 @@ export const NewRecipesContextProvider = ({children}: any) => {
                                 timeOfPreparation: '',
                                 servings: 0,
                                 user: { 
+                                    userId: user.uid,
                                     displayName: user.displayName,
                                     photoURL: user.photoURL}
                             })
@@ -153,9 +144,6 @@ export const NewRecipesContextProvider = ({children}: any) => {
         setImageUrl, 
         uploadingImage, 
         setUploadingImage,
-        user, 
-        setUser, 
-        updateUser,
         manageNewRecipeData}}>
             {children}
         </NewRecipesContext.Provider>
