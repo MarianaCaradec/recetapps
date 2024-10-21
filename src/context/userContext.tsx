@@ -1,9 +1,10 @@
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 
-import { auth } from "../services/firebaseConfig"
+import { auth, db } from "../services/firebaseConfig"
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, onAuthStateChanged, User } from "firebase/auth"
 
-import { Form, Messages } from "../types"
+import { Form, Messages, Recipe } from "../types"
+import { collection, getDocs, query, where } from "firebase/firestore"
 
 interface UserContextType {
     inputValues: Form
@@ -20,7 +21,10 @@ interface UserContextType {
     formIsValid: boolean
     user: User | null
     setUser: Dispatch<SetStateAction<User | null>>
+    userRecipes: Recipe[]
+    setUserRecipes: Dispatch<SetStateAction<Recipe[]>>
     updateUser: () => void
+    fetchUserRecipes: () => void
 }
 
 export const UserContext = createContext<UserContextType | null>(null)
@@ -35,6 +39,7 @@ export const UserContextProvider = ({children}: any) => {
     const [passwordIsValid, setPasswordIsValid] = useState<boolean>(false)
     const [status, setStatus] = useState<Messages>(Messages.waiting)
     const [user, setUser] = useState<User | null>(null)
+    const [userRecipes, setUserRecipes] = useState<Recipe[]>([])
 
     const registerUserMail = async (mail: string, password: string) => {
         try {
@@ -108,6 +113,17 @@ export const UserContextProvider = ({children}: any) => {
         updateUser();
     }, []);
 
+    const fetchUserRecipes = async () => {
+        if (user) {
+            const userFeedRecipes = query(collection(db, 'recipes'), where('user.userId', '==', user.uid));
+            const querySnapshot = await getDocs(userFeedRecipes);
+            const userRecipes = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()} as Recipe));
+            setUserRecipes(userRecipes) 
+        } else {
+            console.error('No hay un usuario autenticado');
+        }
+        };
+
     return (
         <UserContext.Provider 
         value={{
@@ -124,8 +140,11 @@ export const UserContextProvider = ({children}: any) => {
         handleChange, 
         formIsValid,
         user, 
-        setUser, 
-        updateUser,}}>
+        setUser,
+        userRecipes,
+        setUserRecipes, 
+        updateUser,
+        fetchUserRecipes}}>
             {children}
         </UserContext.Provider>
     )

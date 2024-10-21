@@ -1,0 +1,23 @@
+h2 {
+    text-align: left;
+}
+
+.profileDescription {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 1rem;
+}
+
+.profileImg {
+    width: 15vw;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}

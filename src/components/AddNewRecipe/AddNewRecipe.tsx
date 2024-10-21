@@ -3,12 +3,22 @@ import { useEffect} from "react"
 import { useNewRecipesContext } from "../../context/newRecipesContext"
 
 import './AddNewRecipe.css'
+
+import { auth } from "../../services/firebaseConfig"
+
 import { useUserContext } from "../../context/userContext"
 
+import SaveRecipe from "../Buttons/SaveRecipeButton/SaveRecipeButton"
+import ShareRecipe from "../Buttons/ShareRecipeButton/ShareRecipeButton"
+import EditRecipe from "../Buttons/EditRecipeButton/EditRecipeButton"
+
+
 const AddNewRecipe = () => {
-    const {newRecipe, setNewRecipe, newRecipeIsVisible, setNewRecipeIsVisible, setImage, imageUrl,uploadingImage,manageNewRecipeData} = useNewRecipesContext()
+    const {newRecipe, setNewRecipe, newRecipeIsVisible, setNewRecipeIsVisible, setImage, imageUrl,uploadingImage, manageNewRecipeData} = useNewRecipesContext()
     const {user, updateUser} = useUserContext()
 
+    const currentUser = auth.currentUser; 
+    const isOwner = currentUser?.uid === newRecipe.user?.userId;
 
     useEffect(() => {
         updateUser()
@@ -55,6 +65,9 @@ const AddNewRecipe = () => {
                     <input type="text" value={newRecipe.timeOfPreparation} onChange={(e) => setNewRecipe({...newRecipe, timeOfPreparation: e.target.value})}/>
                     <label>Cantidad de porciones</label>
                     <input type="number" value={newRecipe.servings} onChange={(e) => setNewRecipe({...newRecipe, servings: e.target.value})}/>
+                    <label>Categoria</label>
+                    <input type="text" value={newRecipe.category} onChange={(e) => setNewRecipe({...newRecipe, category: e.target.value})}/>
+                    
                     <button type="submit" onClick={showOrHide} disabled={uploadingImage}>{uploadingImage ? 'Subiendo' : 'Publicar receta'}</button>
                 </form>
             </div>
@@ -73,6 +86,13 @@ const AddNewRecipe = () => {
                     </ul>
                     <h4>Tiempo de preparación: {newRecipe.timeOfPreparation}</h4>
                     <h4>{`Rinde ${newRecipe.servings} porciones`}</h4>
+                    <h4>Categoria: {newRecipe.category}</h4>
+
+                    <div className="buttons">
+                            <button> <SaveRecipe/> </button>
+                            <button> <ShareRecipe/> </button>
+                            <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
+                    </div>
                 </div>
             )}
         </>

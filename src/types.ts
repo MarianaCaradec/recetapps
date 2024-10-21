@@ -18,6 +18,7 @@ export interface Recipe {
     description: string
     timeOfPreparation: string
     servings: number | string
+    category: string
     user: {
         userId: string
         displayName: string | null

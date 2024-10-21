@@ -11,6 +11,7 @@ import NavBar from './components/NavBar/NavBar'
 import Home from './pages/Home/Home'
 import Signin from './pages/Signin/Signin'
 import Inicio from './pages/Inicio/Inicio'
+import UserProfile from './pages/UserProfile/UserProfile'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/inicio' element={<Inicio/>}/>
+        <Route path='/profile' element={<UserProfile/>}/>
       </Routes>
 
     </BrowserRouter>

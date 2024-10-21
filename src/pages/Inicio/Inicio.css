@@ -75,10 +75,10 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
     margin-bottom: 1rem;
     color: var(--principalcolor);
     font-family: var(--secondaryfont);
+    font-size: 1.5rem;
 }
 
 .userPhoto {
@@ -98,4 +98,12 @@ li {
     width: 70%;
     height: auto;
     font-size: 1.3rem;
+}
+
+.editButton button {
+    width: 20rem;
+}
+
+.cannotEdit {
+    display: none;
 }

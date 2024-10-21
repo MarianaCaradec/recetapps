@@ -36,6 +36,7 @@ export const NewRecipesContextProvider = ({children}: any) => {
         description: '',
         timeOfPreparation: '',
         servings: 0,
+        category: '',
         user: {
             userId: '',
             displayName: '',
@@ -49,6 +50,8 @@ export const NewRecipesContextProvider = ({children}: any) => {
 
     const {recipes, setRecipes} = useRecipesContext()
     const {user} = useUserContext()
+
+
 
     const manageNewRecipeData = () => {
         if(!user) {
@@ -94,6 +97,7 @@ export const NewRecipesContextProvider = ({children}: any) => {
                             description: newRecipe.description,
                             timeOfPreparation: newRecipe.timeOfPreparation,
                             servings: newRecipe.servings,
+                            category: newRecipe.category,
                             user: {
                                 userId: user.uid,
                                 displayName: user.displayName,
@@ -112,6 +116,7 @@ export const NewRecipesContextProvider = ({children}: any) => {
                                 description: '',
                                 timeOfPreparation: '',
                                 servings: 0,
+                                category: '',
                                 user: { 
                                     userId: user.uid,
                                     displayName: user.displayName,

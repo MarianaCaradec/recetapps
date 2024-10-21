@@ -54,3 +54,7 @@ input:focus, textarea:focus {
 label, input, textarea, button {
     width: 90%;
 }
+
+button {
+    height: 5rem;
+}
