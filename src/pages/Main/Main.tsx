@@ -2,7 +2,7 @@ import { useEffect } from "react"
 
 import { Link } from "react-router-dom"
 
-import './Inicio.css'
+import './Main.css'
 
 import { auth } from "../../services/firebaseConfig"
 

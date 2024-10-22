@@ -11,7 +11,7 @@ import NavBar from './components/NavBar/NavBar'
 
 import Home from './pages/Home/Home'
 import Signin from './pages/Signin/Signin'
-import Inicio from './pages/Inicio/Inicio'
+import Inicio from './pages/Main/Main'
 import UserProfile from './pages/UserProfile/UserProfile'
 import SavedRecipes from './pages/SavedRecipes/SavedRecipes'
 
