@@ -7,7 +7,7 @@ import ShareRecipe from "../../components/Buttons/ShareRecipeButton/ShareRecipeB
 import EditRecipe from "../../components/Buttons/EditRecipeButton/EditRecipeButton"
 
 const SavedRecipes = () => {
-    const {savedRecipes, handleSaveRecipe, fetchUserSavedRecipes} = useSavedRecipesContext()
+    const {savedRecipes, fetchUserSavedRecipes, deleteRecipe} = useSavedRecipesContext()
     const {user} = useUserContext()
 
     useEffect(() => {
@@ -15,6 +15,10 @@ const SavedRecipes = () => {
             fetchUserSavedRecipes()
         }
     }, [user, fetchUserSavedRecipes])
+
+    const handleDeleteRecipe = async (recipeId: string) => {
+        await deleteRecipe(recipeId)
+    }
 
     return (
         <div>
@@ -39,7 +43,7 @@ const SavedRecipes = () => {
                             <h4>Categoria: {recipe.category}</h4>
     
                             <div className="buttons">
-                                <button onClick={() => handleSaveRecipe(recipe)}><h4>Guardar en favoritos</h4></button>
+                                <button onClick={() => handleDeleteRecipe(recipe.id)}><h4>Eliminar de favoritos</h4></button>
                                 <button> <ShareRecipe/> </button>
                                 <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                             </div>

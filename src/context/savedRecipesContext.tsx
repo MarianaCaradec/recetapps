@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore"
+import { collection, deleteDoc, doc, getDocs, setDoc } from "firebase/firestore"
 import { db } from "../services/firebaseConfig"
 
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react"
@@ -10,9 +10,9 @@ import { useUserContext } from "./userContext"
 interface SavedRecipesContextType {
     savedRecipes: Recipe[] | null
     setSavedRecipes: Dispatch<SetStateAction<Recipe[] | null>>
-    saveRecipe: (formattedRecipe: Recipe) => Promise<void>
     handleSaveRecipe: (formattedRecipe: Recipe) => Promise<void>
     fetchUserSavedRecipes: () => Promise<void>
+    deleteRecipe: (recipeId: string) => Promise<void>
 }
 
 export const SavedRecipesContext = createContext<SavedRecipesContextType | null>(null)
@@ -20,11 +20,6 @@ export const SavedRecipesContext = createContext<SavedRecipesContextType | null>
 export const SavedRecipesContextProdivder = ({children}: { children: React.ReactNode }) => {
     const [savedRecipes, setSavedRecipes] = useState<Recipe[] | null>(null)
     const {updateUser, user} = useUserContext()
-
-    const saveRecipe = async (formattedRecipe: Recipe): Promise<void> => {
-        const savedRef = collection(db, 'savedRecipes')
-        await addDoc(savedRef, formattedRecipe)
-    }
 
     const handleSaveRecipe = async (recipe: Recipe): Promise<void> => {
         updateUser()
@@ -50,7 +45,6 @@ export const SavedRecipesContextProdivder = ({children}: { children: React.React
             category: recipe.category,
             };
 
-        await saveRecipe(formattedRecipe)
         const userSavedRecipesRef = doc(db, `profile/${user.uid}/savedRecipes`, formattedRecipe.id);
         await setDoc(userSavedRecipesRef, formattedRecipe); // Guardar receta en el perfil del usuario
         setSavedRecipes((prev) => (prev ? [...prev, formattedRecipe] : [formattedRecipe]))
@@ -65,8 +59,18 @@ export const SavedRecipesContextProdivder = ({children}: { children: React.React
         }
     }
 
+    const deleteRecipe = async (recipeId: string) => {
+        if(!user) {
+            return ;
+        }
+
+        const userSavedRecipesRef = doc(db, `profile/${user.uid}/savedRecipes`, recipeId);
+        await deleteDoc(userSavedRecipesRef)
+        setSavedRecipes(prev => (prev ? prev.filter(recipe => recipe.id !== recipeId) : null))
+    }
+
     return (
-        <SavedRecipesContext.Provider value={{savedRecipes, setSavedRecipes, saveRecipe, handleSaveRecipe, fetchUserSavedRecipes}}>
+        <SavedRecipesContext.Provider value={{savedRecipes, setSavedRecipes, handleSaveRecipe, fetchUserSavedRecipes, deleteRecipe}}>
             {children}
         </SavedRecipesContext.Provider>
     )
