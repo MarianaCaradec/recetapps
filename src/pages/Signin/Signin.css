@@ -49,6 +49,9 @@ input:focus {
     justify-content: space-around;
     align-items: center;
 }
+.sendingStatus button {
+    height: 20vh;
+}
 
 .sendButton {
     font-size: 2rem;

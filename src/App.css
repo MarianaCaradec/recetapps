@@ -23,7 +23,7 @@ button {
   --curve-size: 0.5em;
   --blur: 30px;
   --bg: rgb(53, 24, 42);
-  --color: rgb(140, 91, 83);;
+  --color: #8c5b53;;
   color: var(--color);
   cursor: pointer;
   /* use position: relative; so that BG is only for .btn */

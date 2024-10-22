@@ -58,7 +58,7 @@ const Inicio = () => {
                         <h4>Categoria: {recipe.category}</h4>
 
                         <div className="buttons">
-                            <button onClick={() => handleSaveRecipe(recipe)}>Guardar en favoritos</button>
+                            <button onClick={() => handleSaveRecipe(recipe)}><h4>Guardar en favoritos</h4></button>
                             <button> <ShareRecipe/> </button>
                             <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                         </div>

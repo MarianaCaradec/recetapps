@@ -34,7 +34,7 @@ export const SavedRecipesContextProdivder = ({children}: { children: React.React
             return;
         }
 
-        const formattedRecipe: Recipe = {
+        const formattedRecipe = {
             id: recipe.id, 
             user: {
                 userId: user.uid,
