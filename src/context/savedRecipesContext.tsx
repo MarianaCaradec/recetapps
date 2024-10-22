@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"
+import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore"
 import { db } from "../services/firebaseConfig"
 
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react"
@@ -12,6 +12,7 @@ interface SavedRecipesContextType {
     setSavedRecipes: Dispatch<SetStateAction<Recipe[] | null>>
     saveRecipe: (formattedRecipe: Recipe) => Promise<void>
     handleSaveRecipe: (formattedRecipe: Recipe) => Promise<void>
+    fetchUserSavedRecipes: () => Promise<void>
 }
 
 export const SavedRecipesContext = createContext<SavedRecipesContextType | null>(null)
@@ -54,8 +55,18 @@ export const SavedRecipesContextProdivder = ({children}: { children: React.React
         await setDoc(userSavedRecipesRef, formattedRecipe); // Guardar receta en el perfil del usuario
         setSavedRecipes((prev) => (prev ? [...prev, formattedRecipe] : [formattedRecipe]))
     }
+
+    const fetchUserSavedRecipes = async () => {
+        if(user) {
+            const userSavedRecipesRef = collection(db, `profile/${user.uid}/savedRecipes`)
+            const querySnapshot = await getDocs(userSavedRecipesRef)
+            const recipes: Recipe[] = querySnapshot.docs.map(doc => doc.data() as Recipe)
+            setSavedRecipes(recipes)
+        }
+    }
+
     return (
-        <SavedRecipesContext.Provider value={{savedRecipes, setSavedRecipes, saveRecipe, handleSaveRecipe}}>
+        <SavedRecipesContext.Provider value={{savedRecipes, setSavedRecipes, saveRecipe, handleSaveRecipe, fetchUserSavedRecipes}}>
             {children}
         </SavedRecipesContext.Provider>
     )

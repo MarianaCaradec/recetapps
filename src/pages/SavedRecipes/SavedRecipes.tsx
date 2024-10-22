@@ -2,18 +2,28 @@
 import { Link } from "react-router-dom"
 
 import { useSavedRecipesContext } from "../../context/savedRecipesContext"
+import { useEffect } from "react"
+import { useUserContext } from "../../context/userContext"
 
 const SavedRecipes = () => {
-    const {savedRecipes} = useSavedRecipesContext()
+    const {savedRecipes, fetchUserSavedRecipes} = useSavedRecipesContext()
+    const {user} = useUserContext()
+
+    useEffect(() => {
+        if(user) {
+            fetchUserSavedRecipes()
+        }
+    }, [user, fetchUserSavedRecipes])
 
     return (
         <div>
-            {savedRecipes && savedRecipes.map(recipe => {
-                return (
+            {savedRecipes && savedRecipes.length >= 0 ? ( 
+            savedRecipes.map(recipe => (
+                
                     <div key={recipe.id} className="recipeCard">
                         <div className="userInfo">
-                            <img src={recipe.user.photoURL || '../../assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
-                            <Link to={'/profile'}> <p>{recipe.user.displayName || 'Usuario Anónimo'}</p> </Link>
+                            <img src={recipe?.user?.photoURL || '../../assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
+                            <Link to={'/profile'}> <p>{recipe?.user?.displayName || 'Usuario Anónimo'}</p> </Link>
                         </div>
                         <h3>{recipe.title}</h3>
                         <img src={recipe.img} alt="imagen ilustrativa" />
@@ -30,7 +40,7 @@ const SavedRecipes = () => {
                         <h4>Categoria: {recipe.category}</h4>
                         </div>
                 )
-            })}
+            )) : <h3>No has guardado ninguna receta aún</h3> }
         </div>
     )
 }
