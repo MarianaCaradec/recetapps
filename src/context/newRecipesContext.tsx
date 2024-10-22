@@ -27,7 +27,7 @@ interface NewRecipesContextType {
 
 export const NewRecipesContext = createContext<NewRecipesContextType | null>(null)
 
-export const NewRecipesContextProvider = ({children}: any) => {
+export const NewRecipesContextProvider = ({children}: { children: React.ReactNode }) => {
     const [newRecipe, setNewRecipe] = useState<Recipe>({
         id: '',
         title: '',

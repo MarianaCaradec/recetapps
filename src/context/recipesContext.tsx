@@ -15,7 +15,7 @@ interface RecipeContextType {
 
 export const RecipesContext = createContext<RecipeContextType | null>(null)
 
-export const RecipesContextProvider = ({children}: any) => {
+export const RecipesContextProvider = ({children}: { children: React.ReactNode }) => {
     const [recipes, setRecipes] = useState<Array<Recipe>>([])
     const [loading, setLoading] = useState(false)
 

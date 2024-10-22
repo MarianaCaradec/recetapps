@@ -29,7 +29,7 @@ interface UserContextType {
 
 export const UserContext = createContext<UserContextType | null>(null)
 
-export const UserContextProvider = ({children}: any) => {
+export const UserContextProvider = ({children}: { children: React.ReactNode }) => {
 
     const [inputValues, setInputValues] = useState<Form>({
         mail: '',

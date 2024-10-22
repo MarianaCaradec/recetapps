@@ -8,18 +8,16 @@ import { auth } from "../../services/firebaseConfig"
 
 import {useRecipesContext } from "../../context/recipesContext"
 import { useUserContext } from "../../context/userContext"
+import { useSavedRecipesContext } from "../../context/savedRecipesContext"
 
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe"
-
-import SaveRecipe from "../../components/Buttons/SaveRecipeButton/SaveRecipeButton"
 import ShareRecipe from "../../components/Buttons/ShareRecipeButton/ShareRecipeButton"
 import EditRecipe from "../../components/Buttons/EditRecipeButton/EditRecipeButton"
-
-
 
 const Inicio = () => {
     const {fetchRecipes, recipes, setLoading} = useRecipesContext()
     const {updateUser } = useUserContext()
+    const {handleSaveRecipe} = useSavedRecipesContext()
 
     useEffect(() => {
         fetchRecipes()
@@ -30,6 +28,7 @@ const Inicio = () => {
     if(recipes.length <= 0) {
         return (<h3>No es posible recuperar los datos</h3>)
     }
+
 
     return (
         <div className="recipesContainer">
@@ -59,7 +58,7 @@ const Inicio = () => {
                         <h4>Categoria: {recipe.category}</h4>
 
                         <div className="buttons">
-                            <button> <SaveRecipe/> </button>
+                            <button onClick={() => handleSaveRecipe(recipe)}>Guardar en favoritos</button>
                             <button> <ShareRecipe/> </button>
                             <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                         </div>

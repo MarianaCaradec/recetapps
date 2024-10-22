@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { useUserContext } from "../../context/userContext"
 
 
-
 const UserProfile = () => {
     const {user, updateUser, userRecipes, fetchUserRecipes} = useUserContext()
 
@@ -31,6 +30,8 @@ const UserProfile = () => {
                         <img className='profileImg' src={user.photoURL || '../../assets/defaultProfilePic.jpg'} alt="foto de perfil" />
                     </div>
                     <div>
+                        <button>Configuración</button>
+                        <Link to={'/profile/savedrecipes'}> <button>Guardados</button> </Link>
                         <p>Mi hobby es cocinar porque es catártico para mí, ponele que lo que mejor hago son los postres</p>
                     </div>
                 </div>

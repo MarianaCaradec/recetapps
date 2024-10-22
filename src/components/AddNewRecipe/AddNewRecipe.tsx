@@ -8,14 +8,15 @@ import { auth } from "../../services/firebaseConfig"
 
 import { useUserContext } from "../../context/userContext"
 
-import SaveRecipe from "../Buttons/SaveRecipeButton/SaveRecipeButton"
 import ShareRecipe from "../Buttons/ShareRecipeButton/ShareRecipeButton"
 import EditRecipe from "../Buttons/EditRecipeButton/EditRecipeButton"
+import { useSavedRecipesContext } from "../../context/savedRecipesContext"
 
 
 const AddNewRecipe = () => {
     const {newRecipe, setNewRecipe, newRecipeIsVisible, setNewRecipeIsVisible, setImage, imageUrl,uploadingImage, manageNewRecipeData} = useNewRecipesContext()
     const {user, updateUser} = useUserContext()
+    const {handleSaveRecipe} = useSavedRecipesContext()
 
     const currentUser = auth.currentUser; 
     const isOwner = currentUser?.uid === newRecipe.user?.userId;
@@ -89,7 +90,7 @@ const AddNewRecipe = () => {
                     <h4>Categoria: {newRecipe.category}</h4>
 
                     <div className="buttons">
-                            <button> <SaveRecipe/> </button>
+                            <button onClick={handleSaveRecipe}> Guardan en favoritos </button>
                             <button> <ShareRecipe/> </button>
                             <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                     </div>
