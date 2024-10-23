@@ -1,23 +1,19 @@
 import { useEffect } from "react"
 
-import { Link } from "react-router-dom"
-
 import './Main.css'
-
-import { auth } from "../../services/firebaseConfig"
 
 import {useRecipesContext } from "../../context/recipesContext"
 import { useUserContext } from "../../context/userContext"
-import { useSavedRecipesContext } from "../../context/savedRecipesContext"
+
+
 
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe"
-import ShareRecipe from "../../components/Buttons/ShareRecipeButton/ShareRecipeButton"
-import EditRecipe from "../../components/Buttons/EditRecipeButton/EditRecipeButton"
+
+import { Link } from "react-router-dom"
 
 const Inicio = () => {
     const {fetchRecipes, recipes, setLoading} = useRecipesContext()
     const {updateUser } = useUserContext()
-    const {handleSaveRecipe} = useSavedRecipesContext()
 
     useEffect(() => {
         fetchRecipes()
@@ -25,48 +21,29 @@ const Inicio = () => {
         setLoading(false)
     }, [])
 
-    if(recipes.length <= 0) {
-        return (<h3>No es posible recuperar los datos</h3>)
-    }
-
-
     return (
+        <>
         <div className="recipesContainer">
-            {recipes && recipes.map(recipe => {
-            const currentUser = auth.currentUser; 
-            const isOwner = currentUser?.uid === recipe.user?.userId;
+        {recipes.length > 0 ?
+            recipes.map(recipe => {
                 return (
-                    <div key={recipe.id} className="recipeCard">
-                        {recipe.user && (
-                            <div className="userInfo">
-                                    <img src={recipe.user.photoURL || '../../assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
-                                    <Link to={'/profile'}> <p>{recipe.user.displayName || 'Usuario Anónimo'}</p> </Link>
-                            </div>
-                        )}
-                        <h3>{recipe.title}</h3>
-                        <img src={recipe.img} alt="imagen ilustrativa" />
-                        <p>{recipe.description}</p>
-                        <ul className="ingredients">
-                            <h4>Ingredientes: </h4>
-                            {Array.isArray(recipe.ingredients) ? ( recipe.ingredients.map((ingredient, id) => (
-                                    <li key={id}>{ingredient}</li> )
-                                )) : (<li>{String(recipe.ingredients)}</li>
-                            )}
-                        </ul>
-                        <h4>Tiempo de preparación: {recipe.timeOfPreparation}</h4>
-                        <h4>{`Rinde ${recipe.servings} porciones`}</h4>
-                        <h4>Categoria: {recipe.category}</h4>
-
-                        <div className="buttons">
-                            <button onClick={() => handleSaveRecipe(recipe)}><h4>Guardar en favoritos</h4></button>
-                            <button> <ShareRecipe/> </button>
-                            <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
+                    <div className="recipeCard" key={recipe.id}>
+                    {recipe.user && (
+                        <div className="userInfo">
+                            <img src={recipe.user.photoURL || '../../assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
+                            <Link to={'/profile'}> <p>{recipe.user.displayName || 'Usuario Anónimo'}</p> </Link>
                         </div>
-                    </div>
-                )
-            })}
-            <AddNewRecipe />
+                    )}
+                    <h3>{recipe.title}</h3>
+                    <img src={recipe.img} alt="imagen ilustrativa" />
+                    <Link to={`/receta/${recipe.id}`}> <button>Ver en detalle</button> </Link>
+                </div>
+                )  
+            })
+                : <h3>No es posible recuperar los datos</h3>}
         </div>
+        <AddNewRecipe />
+        </>
     )
 }
 
