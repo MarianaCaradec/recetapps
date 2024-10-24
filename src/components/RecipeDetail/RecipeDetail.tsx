@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom"
 import { useSavedRecipesContext } from "../../context/savedRecipesContext"
 
 import EditRecipe from "../EditRecipeButton/EditRecipeButton"
+import ShareRecipeButton from "../ShareRecipeButton/ShareRecipeButton";
 
 
 const RecipeDetail = ({recipes}: {recipes: Recipe[]}) => {
@@ -24,22 +25,6 @@ const RecipeDetail = ({recipes}: {recipes: Recipe[]}) => {
 
     const currentUser = auth.currentUser; 
     const isOwner = currentUser?.uid === recipe.user?.userId;
-    
-    const handleShare = () => {
-
-        const recipeUrl = `${window.location.origin}/receta/${recipe.id}`;
-        navigator.clipboard.writeText(recipeUrl)
-            .then(() => {
-                alert('Enlace copiado al portapapeles');
-            })
-            .catch(err => console.error('Error al copiar el enlace: ', err));
-    };
-
-    const shareOnWhatsApp = () => {
-        const recipeUrl = `${window.location.origin}/receta/${recipe.id}`;
-        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`Mira esta receta: ${recipeUrl}`)}`;
-        window.open(whatsappUrl, '_blank');
-    };
 
     return (
         <>
@@ -64,9 +49,8 @@ const RecipeDetail = ({recipes}: {recipes: Recipe[]}) => {
                 <h4>{`Rinde ${recipe.servings} porciones`}</h4>
                 <h4>Categoria: {recipe.category}</h4>
                 <div className="buttons">
-                    <button onClick={() => handleSaveRecipe(recipe)}><h4>Guardar en favoritos</h4></button>
-                    <button onClick={handleShare}>Compartir enlace</button>
-                    <button onClick={shareOnWhatsApp}>Compartir en whatsapp</button>
+                    <button onClick={(event) => handleSaveRecipe(recipe, event)}><h4>Guardar en favoritos</h4></button>
+                    <ShareRecipeButton recipe={recipe}/>
                     <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                 </div>
             </div>

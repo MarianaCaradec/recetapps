@@ -3,7 +3,7 @@ import { useSavedRecipesContext } from "../../context/savedRecipesContext"
 import { useEffect } from "react"
 import { useUserContext } from "../../context/userContext"
 import { auth } from "../../services/firebaseConfig"
-import ShareRecipe from "../../components/Buttons/ShareRecipeButton/ShareRecipeButton"
+import ShareRecipeButton from "../../components/ShareRecipeButton/ShareRecipeButton"
 import EditRecipe from "../../components/EditRecipeButton/EditRecipeButton"
 
 const SavedRecipes = () => {
@@ -44,7 +44,7 @@ const SavedRecipes = () => {
     
                             <div className="buttons">
                                 <button onClick={() => handleDeleteRecipe(recipe.id)}><h4>Eliminar de favoritos</h4></button>
-                                <button> <ShareRecipe/> </button>
+                                <ShareRecipeButton recipe={recipe}/>
                                 <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                             </div>
                         </div>

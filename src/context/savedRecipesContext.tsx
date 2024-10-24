@@ -10,7 +10,7 @@ import { useUserContext } from "./userContext"
 interface SavedRecipesContextType {
     savedRecipes: Recipe[] | null
     setSavedRecipes: Dispatch<SetStateAction<Recipe[] | null>>
-    handleSaveRecipe: (formattedRecipe: Recipe) => Promise<void>
+    handleSaveRecipe: (formattedRecipe: Recipe, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>
     fetchUserSavedRecipes: () => Promise<void>
     deleteRecipe: (recipeId: string) => Promise<void>
 }
@@ -21,8 +21,9 @@ export const SavedRecipesContextProdivder = ({children}: { children: React.React
     const [savedRecipes, setSavedRecipes] = useState<Recipe[] | null>(null)
     const {updateUser, user} = useUserContext()
 
-    const handleSaveRecipe = async (recipe: Recipe): Promise<void> => {
+    const handleSaveRecipe = async (recipe: Recipe, event: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<void> => {
         updateUser()
+        event.preventDefault()
 
         if(!user) {
             console.error('Usuario no autenticado');
