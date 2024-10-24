@@ -9,7 +9,7 @@ import { auth } from "../../services/firebaseConfig"
 import { useUserContext } from "../../context/userContext"
 
 import ShareRecipe from "../Buttons/ShareRecipeButton/ShareRecipeButton"
-import EditRecipe from "../Buttons/EditRecipeButton/EditRecipeButton"
+import EditRecipe from "../EditRecipeButton/EditRecipeButton"
 import { useSavedRecipesContext } from "../../context/savedRecipesContext"
 
 

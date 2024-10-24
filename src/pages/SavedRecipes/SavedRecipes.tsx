@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useUserContext } from "../../context/userContext"
 import { auth } from "../../services/firebaseConfig"
 import ShareRecipe from "../../components/Buttons/ShareRecipeButton/ShareRecipeButton"
-import EditRecipe from "../../components/Buttons/EditRecipeButton/EditRecipeButton"
+import EditRecipe from "../../components/EditRecipeButton/EditRecipeButton"
 
 const SavedRecipes = () => {
     const {savedRecipes, fetchUserSavedRecipes, deleteRecipe} = useSavedRecipesContext()
