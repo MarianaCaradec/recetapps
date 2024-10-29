@@ -1,0 +1,54 @@
+/* From Uiverse.io by boryanakrasteva */ 
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-right: 4rem;
+    position: relative;
+}
+
+.input {
+    border-style: none;
+    height: 3rem;
+    width: 3rem;
+    padding: 1rem;
+    outline: none;
+    color: #fff;
+}
+
+.input::placeholder,
+.input {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.input::placeholder {
+    color: #8f8f8f;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 4rem;
+    outline: none;
+    border-style: none;
+    pointer-events: painted;
+    background-color: transparent;
+    transition: .2s linear;
+}
+
+.icon:focus ~ .input,
+.input:focus {
+    box-shadow: none;
+    width: 12rem;
+    border-radius: 0px;
+    background-color: transparent;
+    color: #fff;
+    border-bottom: 3px solid #7e4fd4;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}

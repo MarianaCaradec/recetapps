@@ -30,14 +30,14 @@ const Inicio = () => {
                     <div className="recipeCard" key={recipe.id}>
                     {recipe.user && (
                         <div className="userInfo">
-                            <img src={recipe.user.photoURL || '../../assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
+                            <img src={recipe.user.photoURL || 'assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
                             <Link to={'/profile'}> <p>{recipe.user.displayName || 'Usuario Anónimo'}</p> </Link>
                         </div>
                     )}
                     <h3>{recipe.title}</h3>
                     <img src={recipe.img} alt="imagen ilustrativa" />
                     <Link to={`/receta/${recipe.id}`}> <button>Ver en detalle</button> </Link>
-                </div>
+                    </div>
                 )  
             })
                 : <h3>No es posible recuperar los datos</h3>}

@@ -36,7 +36,7 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <div>
-                    {userRecipes && userRecipes.map(recipe => {
+                    {userRecipes.length > 0 ? userRecipes.map(recipe => {
                         return (
                             <div key={recipe.id} className="recipeCard">
                             <div className="userInfo">
@@ -58,7 +58,7 @@ const UserProfile = () => {
                             <h4>Categoria: {recipe.category}</h4>
                         </div>
                         )
-                    })
+                    }) : <h3>No has guardado niguna receta aún</h3>
                     }
                 </div>
             </>

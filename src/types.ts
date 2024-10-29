@@ -21,7 +21,7 @@ export interface Recipe {
     category: string
     user: {
         userId: string
-        displayName: string | null
-        photoURL: string | null
+        displayName?: string
+        photoURL?: string
     }
 }

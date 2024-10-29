@@ -31,7 +31,7 @@ const RecipeDetail = ({recipes}: {recipes: Recipe[]}) => {
             <div key={recipe.id} className="recipeCard">
                 {recipe.user && (
                 <div className="userInfo">
-                <img src={recipe.user.photoURL || '../../assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
+                <img src={recipe.user.photoURL || 'assets/defaultProfilePic.jpg'} className="userPhoto" alt="foto de perfil" />
                 <Link to={'/profile'}> <p>{recipe.user.displayName || 'Usuario Anónimo'}</p> </Link>
                 </div>
                 )}
@@ -49,7 +49,7 @@ const RecipeDetail = ({recipes}: {recipes: Recipe[]}) => {
                 <h4>{`Rinde ${recipe.servings} porciones`}</h4>
                 <h4>Categoria: {recipe.category}</h4>
                 <div className="buttons">
-                    <button onClick={(event) => handleSaveRecipe(recipe, event)}><h4>Guardar en favoritos</h4></button>
+                    <button onClick={(event) => handleSaveRecipe(recipe, event)}>Guardar en favoritos</button>
                     <ShareRecipeButton recipe={recipe}/>
                     <button className={isOwner ? 'editButton' : 'cannotEdit'}> {isOwner && <EditRecipe/>} </button>
                 </div>

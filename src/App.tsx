@@ -8,15 +8,17 @@ import { NewRecipesContextProvider } from './context/newRecipesContext'
 import { SavedRecipesContextProdivder } from './context/savedRecipesContext'
 
 import NavBar from './components/NavBar/NavBar'
+import RecipeDetail from './components/RecipeDetail/RecipeDetail'
 
 import Home from './pages/Home/Home'
 import Signin from './pages/Signin/Signin'
 import Inicio from './pages/Main/Main'
 import UserProfile from './pages/UserProfile/UserProfile'
 import SavedRecipes from './pages/SavedRecipes/SavedRecipes'
-import RecipeDetail from './components/RecipeDetail/RecipeDetail'
+import RecipesByCat from './pages/RecipesByCat/RecipesByCat'
 
 import { useEffect } from 'react'
+import { SearchContextProvider } from './context/searchContext'
 
 function App() {
   const {recipes, fetchRecipes, setLoading, loading} = useRecipesContext()
@@ -36,6 +38,7 @@ if(loading) {
     <RecipesContextProvider>
     <UserContextProvider>
     <NewRecipesContextProvider>
+    <SearchContextProvider>
     <SavedRecipesContextProdivder>
 
       <BrowserRouter>
@@ -47,6 +50,7 @@ if(loading) {
           <Route path='/signin' element={<Signin/>}/>
           <Route path='/inicio' element={<Inicio/>}/>
           <Route path='/receta/:id' element={<RecipeDetail recipes={recipes}/>}/>
+          <Route path='/recetas/categoria/:cat' element={<RecipesByCat/>}/>
           <Route path='/profile' element={<UserProfile/>}/>
           <Route path='/profile/savedrecipes' element={<SavedRecipes/>}/>
         </Routes>
@@ -54,6 +58,7 @@ if(loading) {
       </BrowserRouter>
 
     </SavedRecipesContextProdivder>
+    </SearchContextProvider>
     </NewRecipesContextProvider>
     </UserContextProvider>
     </RecipesContextProvider>
